@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Anz Thomas — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  <style>
+    :root{
+      --bg: #0b0c10;        /* background */
+      --surface: #111317;   /* cards/nav */
+      --text: #e6e7eb;      /* primary text */
+      --muted: #9aa0a6;     /* secondary text */
+      --brand: #6ee7b7;     /* accent */
+      --brand-2: #60a5fa;   /* secondary accent */
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%}
+    body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Layout */
+    .container{max-width:1100px;margin:0 auto;padding:0 16px}
+    header.nav{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,var(--surface),rgba(17,19,23,.85));backdrop-filter:saturate(140%) blur(6px);}
+    .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{font-weight:800;letter-spacing:.5px}
+    .brand .dot{color:var(--brand)}
+    .nav-links{display:flex;gap:18px}
+    .nav-links a{opacity:.9}
+    .nav-links a:hover{color:var(--brand)}
+    .nav-cta{display:flex;align-items:center;gap:8px}
+    .btn{background:var(--brand);color:#0b0c10;border:none;padding:10px 14px;border-radius:12px;font-weight:700;cursor:pointer}
+    .btn.secondary{background:transparent;color:var(--text);border:1px solid #24262d}
+    .btn.secondary:hover{border-color:var(--brand);color:var(--brand)}
+
+    /* Mobile nav */
+    .hamburger{display:none;background:none;border:none;color:var(--text);font-size:24px;cursor:pointer}
+    @media (max-width: 780px){
+      .nav-links{display:none}
+      .hamburger{display:block}
+      .mobile-menu{position:absolute;left:16px;right:16px;top:60px;background:var(--surface);border:1px solid #22262e;border-radius:16px;padding:12px;display:none}
+      .mobile-menu a{display:block;padding:10px 12px;border-radius:8px}
+      .mobile-menu a:hover{background:#1a1d24}
+    }
+
+    /* Hero */
+    .hero{padding:64px 0 28px}
+    .hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:28px;align-items:center}
+    .kicker{color:var(--brand);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:12px}
+    .title{font-size:44px;line-height:1.1;margin:10px 0 14px}
+    .subtitle{color:var(--muted)}
+    .hero-cta{display:flex;gap:12px;margin-top:18px}
+    .hero-media{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.45);background:#0f1116}
+    .hero-media img{width:100%;height:100%;object-fit:cover;aspect-ratio:16/10}
+    .badge{position:absolute;left:12px;bottom:12px;background:rgba(11,12,16,.7);border:1px solid #23262e;padding:6px 10px;border-radius:10px;font-size:12px}
+    .badge strong{color:var(--brand-2)}
+    @media (max-width: 920px){
+      .title{font-size:36px}
+      .hero-grid{grid-template-columns:1fr}
+    }
+
+    /* Gallery / Projects */
+    section{padding:56px 0}
+    .section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:18px}
+    .section-head h2{margin:0;font-size:28px}
+    .muted{color:var(--muted);font-size:14px}
+
+    .grid{display:grid;gap:18px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    @media (max-width: 920px){.grid.cols-3{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width: 640px){.grid.cols-3{grid-template-columns:1fr}}
+
+    .card{background:var(--surface);border:1px solid #22262e;border-radius:18px;overflow:hidden}
+    .card .thumb{aspect-ratio:16/10;background:#0e1014;overflow:hidden}
+    .card .thumb img{width:100%;height:100%;object-fit:cover}
+    .card .body{padding:14px}
+    .chip{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid #28303a;color:var(--muted);font-size:12px}
+    .card h3{margin:10px 0 6px;font-size:18px}
+    .card p{margin:0;color:var(--muted)}
+
+    /* Contact */
+    .contact-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:22px}
+    @media (max-width: 900px){.contact-wrap{grid-template-columns:1fr}}
+    form{display:grid;gap:12px}
+    input,textarea{background:#0f1116;border:1px solid #21242c;color:var(--text);padding:12px 14px;border-radius:12px;font:inherit}
+    textarea{min-height:140px;resize:vertical}
+
+    /* Footer */
+    footer{padding:26px 0;border-top:1px solid #21242c;color:#9aa0a6}
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <header class="nav">
+    <div class="container nav-inner">
+      <div class="brand">Anz<span class="dot">.</span></div>
+      <nav class="nav-links">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <button class="btn secondary" id="themeToggle" aria-label="Toggle theme">🌙</button>
+      </nav>
+      <button class="hamburger" id="hamburger" aria-label="Open menu">☰</button>
+    </div>
+    <div class="container">
+      <div class="mobile-menu" id="mobileMenu">
+        <a href="#work" onclick="closeMenu()">Work</a>
+        <a href="#about" onclick="closeMenu()">About</a>
+        <a href="#contact" onclick="closeMenu()">Contact</a>
+        <a href="#resume" onclick="closeMenu()">Resume</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div data-aos="fade-right">
+        <div class="kicker">Portfolio</div>
+        <h1 class="title">Crafting clean, modern web experiences.</h1>
+        <p class="subtitle">I design and build fast, responsive websites and apps. Below are recent highlights — click any card to explore.</p>
+        <div class="hero-cta">
+          <a class="btn" href="#work">View Work</a>
+          <a class="btn secondary" href="#contact">Contact Me</a>
+        </div>
+      </div>
+      <div class="hero-media" data-aos="fade-left">
+        <!-- 👉 Replace hero.jpg with your image (e.g., a mockup/collage) -->
+        <img src="images/hero.jpg" alt="Featured project preview" />
+        <div class="badge">Featured • <strong>Web • UI</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORK / PROJECTS -->
+  <section id="work">
+    <div class="container">
+      <div class="section-head">
+        <h2>Selected Work</h2>
+        <div class="muted">Drop images into <code>/images/</code> and update the data below.</div>
+      </div>
+      <div class="grid cols-3" id="projectsGrid"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-head">
+        <h2>About</h2>
+        <a id="resume" class="btn secondary" href="resume.pdf" download>Download Resume</a>
+      </div>
+      <p class="muted">I’m a developer focused on performant, accessible, and visually refined interfaces. I enjoy turning product ideas into delightful user experiences.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-head">
+        <h2>Contact</h2>
+        <span class="muted">Let’s talk about your project.</span>
+      </div>
+      <div class="contact-wrap">
+        <div class="card" data-aos="fade-right">
+          <div class="body">
+            <h3>Email</h3>
+            <p class="muted">anzthomas491@gmail.com</p>
+            <h3 style="margin-top:14px">Socials</h3>
+            <p class="muted">GitHub • LinkedIn • Twitter</p>
+          </div>
+        </div>
+        <div class="card" data-aos="fade-left">
+          <div class="body">
+            <!-- Default to FormSubmit → easy Gmail delivery. Swap to Formspree/EmailJS later if you prefer. -->
+            <form action="https://formsubmit.co/anzthomas491@gmail.com" method="POST">
+              <!-- FormSubmit options -->
+              <input type="hidden" name="_subject" value="New message from portfolio" />
+              <input type="hidden" name="_captcha" value="false" />
+              <input type="hidden" name="_template" value="box" />
+              
+              <input type="text" name="name" placeholder="Your Name" required />
+              <input type="email" name="email" placeholder="Your Email" required />
+              <textarea name="message" placeholder="Your Message" required></textarea>
+              <button class="btn" type="submit">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">© <span id="year"></span> Anz Thomas • Built with ❤️</div>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle
+    const body = document.body;
+    const themeBtn = document.getElementById('themeToggle');
+    themeBtn?.addEventListener('click', ()=> body.classList.toggle('light'));
+
+    // Mobile menu
+    const burger = document.getElementById('hamburger');
+    const menu = document.getElementById('mobileMenu');
+    burger?.addEventListener('click', ()=> menu.style.display = menu.style.display === 'block' ? 'none' : 'block');
+    function closeMenu(){menu.style.display='none'}
+    window.closeMenu = closeMenu;
+
+    // 👉 PROJECT DATA: replace thumbs + links with your images/URLs
+    const projects = [
+      {
+        title: 'E‑Commerce Landing',
+        role: 'UI/Front‑End',
+        desc: 'A sleek product landing page with cart preview and variant picker.',
+        img: 'images/proj1.jpg',
+        url: '#'
+      },
+      {
+        title: 'Analytics Dashboard',
+        role: 'Design • Build',
+        desc: 'Responsive dashboard with charts and dark mode.',
+        img: 'images/proj2.jpg',
+        url: '#'
+      },
+      {
+        title: 'Portfolio Revamp',
+        role: 'UX • Front‑End',
+        desc: 'Image‑driven personal site with AOS animations.',
+        img: 'images/proj3.jpg',
+        url: '#'
+      },
+      {
+        title: 'Mobile App Mock',
+        role: 'UI',
+        desc: 'Onboarding flow and home feed mockups.',
+        img: 'images/proj4.jpg',
+        url: '#'
+      },
+      {
+        title: 'Marketing Microsite',
+        role: 'Front‑End',
+        desc: 'Campaign microsite with marquee and CTA tracking.',
+        img: 'images/proj5.jpg',
+        url: '#'
+      },
+      {
+        title: 'Product Configurator',
+        role: 'UI/UX • Dev',
+        desc: 'Interactive configurator with live preview.',
+        img: 'images/proj6.jpg',
+        url: '#'
+      }
+    ];
+
+    const grid = document.getElementById('projectsGrid');
+    grid.innerHTML = projects.map(p => `
+      <a class="card" href="${p.url}" target="_blank" rel="noopener">
+        <div class="thumb">${p.img ? `<img src="${p.img}" alt="${p.title} thumbnail">` : ''}</div>
+        <div class="body">
+          <span class="chip">${p.role}</span>
+          <h3>${p.title}</h3>
+          <p>${p.desc}</p>
+        </div>
+      </a>
+    `).join('');
+  </script>
+</body>
+</html>
