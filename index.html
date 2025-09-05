@@ -3,169 +3,248 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
+  <title>Anz Thomas | Portfolio</title>
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
   <style>
-    /* General Styles */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
+    :root {
+      --bg: #f8f9fa;
+      --text: #333;
+      --card: #fff;
     }
-
+    body.dark {
+      --bg: #121212;
+      --text: #f1f1f1;
+      --card: #1e1e1e;
+    }
     body {
-      background: #f8f9fa;
-      color: #333;
-      line-height: 1.6;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      font-family: Arial, sans-serif;
+      transition: background 0.3s, color 0.3s;
+      scroll-behavior: smooth;
     }
 
     header {
-      background: #111;
-      color: #fff;
-      padding: 20px;
       text-align: center;
+      padding: 40px 20px;
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin-bottom: 10px;
-    }
-
-    header p {
-      font-size: 1.2rem;
-    }
-
+    /* Navbar */
     nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       background: #222;
-      padding: 10px;
-      text-align: center;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
-
-    nav a {
-      color: #fff;
-      margin: 0 15px;
+    nav .links {
+      display: flex;
+      gap: 20px;
+    }
+    nav a, nav button {
+      color: white;
       text-decoration: none;
       font-weight: bold;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
     }
-
-    nav a:hover {
+    nav button:hover, nav a:hover {
       color: #f39c12;
     }
 
-    section {
-      padding: 50px 20px;
-      max-width: 900px;
-      margin: auto;
+    /* Hamburger (hidden by default) */
+    .hamburger {
+      display: none;
+      font-size: 1.5rem;
+      color: white;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    /* Mobile Menu */
+    @media (max-width: 768px) {
+      nav .links {
+        display: none;
+        flex-direction: column;
+        background: #333;
+        position: absolute;
+        top: 50px;
+        right: 20px;
+        padding: 10px;
+        border-radius: 8px;
+      }
+      nav .links.show {
+        display: flex;
+      }
+      .hamburger {
+        display: block;
+      }
     }
 
     h2 {
-      margin-bottom: 20px;
-      font-size: 2rem;
       text-align: center;
-      color: #222;
-    }
-
-    .about, .contact {
-      text-align: center;
+      margin: 40px 0 20px;
     }
 
     .projects {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 20px;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
     }
 
-    .project-card {
-      background: #fff;
+    .card {
+      background: var(--card);
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
       transition: transform 0.3s;
     }
+    .card:hover { transform: translateY(-5px); }
 
-    .project-card:hover {
-      transform: translateY(-5px);
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 500px;
+      margin: auto;
+      gap: 10px;
+    }
+    input, textarea, button {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+    button {
+      background: #222;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #f39c12;
     }
 
-    .project-card h3 {
-      margin-bottom: 10px;
+    /* Resume button */
+    .resume-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #f39c12;
+      color: white;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .resume-btn:hover {
+      background: #222;
     }
 
     footer {
-      background: #111;
-      color: #fff;
       text-align: center;
-      padding: 15px;
-      margin-top: 30px;
+      padding: 20px;
+      background: #222;
+      color: white;
+      margin-top: 40px;
     }
-
-    footer a {
-      color: #f39c12;
-      margin: 0 10px;
-      text-decoration: none;
-    }
-
   </style>
 </head>
 <body>
-
   <!-- Header -->
   <header>
-    <h1>Your Name</h1>
-    <p>Web Developer | Designer | Tech Enthusiast</p>
+    <h1 data-aos="fade-down">Anz Thomas</h1>
+    <p data-aos="fade-up">Web Developer | Designer | Tech Enthusiast</p>
   </header>
 
-  <!-- Navigation -->
+  <!-- Navbar -->
   <nav>
-    <a href="#about">About</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
+    <div class="logo" style="color:white; font-weight:bold;">Anz</div>
+    <div class="links" id="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+      <button onclick="toggleTheme()">🌙</button>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
   </nav>
 
-  <!-- About Section -->
-  <section id="about" class="about">
+  <!-- About -->
+  <section id="about" data-aos="fade-right">
     <h2>About Me</h2>
-    <p>
-      Hello! I'm a passionate developer who loves building web applications,
-      solving problems, and learning new technologies. I specialize in
-      creating clean, responsive, and user-friendly websites.
+    <p style="text-align:center; max-width:700px; margin:auto;">
+      Hi! I'm Anz, a passionate developer who loves building clean,
+      responsive, and interactive websites.
     </p>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="projects-section">
-    <h2>Projects</h2>
-    <div class="projects">
-      <div class="project-card">
-        <h3>Project One</h3>
-        <p>A short description of your project.</p>
-        <a href="https://github.com/username/project1" target="_blank">View on GitHub</a>
-      </div>
-      <div class="project-card">
-        <h3>Project Two</h3>
-        <p>A short description of your project.</p>
-        <a href="https://github.com/username/project2" target="_blank">View on GitHub</a>
-      </div>
-      <div class="project-card">
-        <h3>Project Three</h3>
-        <p>A short description of your project.</p>
-        <a href="https://github.com/username/project3" target="_blank">View on GitHub</a>
-      </div>
+    <div style="text-align:center;">
+      <a href="resume.pdf" class="resume-btn" download>📄 Download Resume</a>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="contact">
+  <!-- Projects -->
+  <section id="projects">
+    <h2 data-aos="zoom-in">Projects</h2>
+    <div class="projects" id="project-list"></div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" data-aos="fade-left">
     <h2>Contact</h2>
-    <p>Email: <a href="mailto:youremail@example.com">youremail@example.com</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/username" target="_blank">linkedin.com/in/username</a></p>
-    <p>GitHub: <a href="https://github.com/username" target="_blank">github.com/username</a></p>
+    <form action="https://formspree.io/f/mnqevyoy" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required />
+      <input type="email" name="_replyto" placeholder="Your Email" required />
+      <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
   </section>
 
   <!-- Footer -->
   <footer>
-    <p>&copy; 2025 Your Name | Made with ❤️</p>
+    <p>&copy; 2025 Anz Thomas | Made with ❤️</p>
   </footer>
 
+  <!-- Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init();
+
+    // Dark/Light Mode
+    function toggleTheme() {
+      document.body.classList.toggle("dark");
+    }
+
+    // Mobile Menu
+    function toggleMenu() {
+      document.getElementById("nav-links").classList.toggle("show");
+    }
+
+    // Dynamic Project Loading
+    const projects = [
+      { title: "Portfolio Website", desc: "My personal portfolio site", link: "https://github.com/anz-thomas/anzthomas.github.io" },
+      { title: "Chat App", desc: "Real-time chat app using Node.js & Socket.IO", link: "#" },
+      { title: "Weather App", desc: "Weather forecast app using OpenWeather API", link: "#" }
+    ];
+
+    const container = document.getElementById("project-list");
+    projects.forEach(p => {
+      container.innerHTML += `
+        <div class="card" data-aos="flip-left">
+          <h3>${p.title}</h3>
+          <p>${p.desc}</p>
+          <a href="${p.link}" target="_blank">View on GitHub</a>
+        </div>
+      `;
+    });
+  </script>
 </body>
 </html>
