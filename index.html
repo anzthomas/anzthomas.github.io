@@ -201,7 +201,7 @@ Then push to GitHub Pages.
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="contact container" data-aos="fade-up">
+    <!--<section id="contact" class="contact container" data-aos="fade-up">
       <h2 class="contact-hero">I love to hear from you. Whether you have a question or just want to chat — shoot me a message.</h2>
 
       <div class="contact-grid">
@@ -225,8 +225,57 @@ Then push to GitHub Pages.
           </form>
         </div>
       </div>
-    </section>
+    </section>-->
 
+    <section id="contact" class="contact container" data-aos="fade-up">
+  <h2 class="contact-hero">
+    I love to hear from you. Whether you have a question or just want to chat — shoot me a message.
+  </h2>
+
+  <div class="contact-grid">
+    <div class="contact-card" data-aos="fade-right">
+      <h4>Reach me at</h4>
+      <p class="muted">
+        anzthomas491@gmail.com<br/>WhatsApp: +91-XXXXXXXXXX
+      </p>
+
+      <div style="height:18px"></div>
+      <h4>Social</h4>
+      <p class="muted">LinkedIn • GitHub • Instagram • Medium</p>
+    </div>
+
+    <div class="contact-card" data-aos="fade-left">
+      <form id="contact-form">
+        <input type="text" name="from_name" placeholder="Your name" required />
+        <input type="email" name="reply_to" placeholder="Your email" required />
+        <textarea name="message" placeholder="Your message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+      <p id="form-status" class="muted"></p>
+    </div>
+  </div>
+</section>
+
+<!-- EmailJS SDK -->
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+<script>
+  (function(){
+    emailjs.init("f8iBD_HemYhGBK68A"); // ✅ Your Public Key
+  })();
+
+  document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    emailjs.sendForm("service_34ih4hl", "template_0izbrz8", this)
+      .then(() => {
+        document.getElementById("form-status").innerText = "✅ Message sent successfully!";
+        this.reset();
+      }, (error) => {
+        document.getElementById("form-status").innerText = "❌ Failed to send: " + JSON.stringify(error);
+      });
+  });
+</script>
+    
   </main>
 
   <footer>
