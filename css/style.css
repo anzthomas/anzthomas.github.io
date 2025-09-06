@@ -108,3 +108,95 @@ footer{padding:26px 0;border-top:1px solid rgba(255,255,255,0.02);color:var(--mu
 /* Smooth scroll behavior for anchor clicks */
 html{scroll-behavior:smooth}
 
+/* ...existing code... */
+
+/* Mobile optimization */
+@media (max-width: 600px) {
+  body {
+    font-size: 1rem;
+    padding: 0 8px;
+  }
+
+  .container {
+    padding: 0 8px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .nav-inner, .nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 8px;
+  }
+
+  .brand {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+
+  .contact-grid {
+    display: block;
+  }
+
+  .contact-card {
+    margin-bottom: 18px;
+    padding: 12px 8px;
+    box-shadow: none;
+  }
+
+  .hero, .about, .expertise, .timeline, .projects, .contact {
+    padding: 18px 0;
+  }
+
+  h2, h3, h4 {
+    font-size: 1.2rem;
+  }
+
+  .section-head h3 {
+    font-size: 1.3rem;
+  }
+
+  .proj-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px;
+  }
+
+  .edu-grid {
+    display: block;
+  }
+
+  .edu-card {
+    margin-bottom: 16px;
+    padding: 10px 8px;
+  }
+
+  .skill-grid {
+    grid-template-columns: 1fr !important;
+    gap: 12px;
+  }
+
+  .timeline .t-container {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .timeline__block {
+    margin-bottom: 16px;
+  }
+
+  footer .container {
+    padding: 12px 8px;
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  /* Hide desktop nav, show mobile menu if you have one */
+  .nav .desktop-menu {
+    display: none;
+  }
+  .nav .mobile-menu {
+    display: block;
+  }
+}
+
+/* ...existing code... */
