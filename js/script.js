@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
   ];
 
   const grid = document.getElementById('projGrid');
-  if(grid){~
+  if(grid){
     grid.innerHTML = projects.map(p => `\
       <a class="proj-card" href="${p.url}" target="_blank" rel="noopener">\
         <div class="thumb">${p.img?`<img src="${p.img}" alt="${p.title}">`:''}</div>\
