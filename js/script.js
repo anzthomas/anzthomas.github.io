@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
    // {title:'Brahma HelpLine Telegram Bot', desc:'Python & Telegram API', img:'images/proj1.jpg', url:'https://github.com/anz-thomas/brahma-helpline'},
   //  {title:'GitAutoPusher', desc:'Bash script to auto push repos', img:'images/proj2.jpg', url:'https://github.com/anz-thomas/gitautopusher'},
   //  {title:'Object Tracker (Android)', desc:'Auto pan/zoom camera object tracking', img:'images/proj3.jpg', url:'#'}
-    {title:'Service hub', desc:'A ai based service hub', img:'images/proj3.jpg', url:'#'}
+    {title:'Service hub', desc:'A ai based service hub', img:'images/proj3.jpg', url:'#'},
     {title:'Smartixx', desc:'A online concession ticked booking system ', img:'images/proj3.jpg', url:'#'}
 
   ];
