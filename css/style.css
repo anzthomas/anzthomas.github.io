@@ -58,7 +58,7 @@ section.about{padding:48px 0 20px}
 @media (max-width:880px){.img-collage{height:320px}.polaroid{width:56%}.polaroid.small{display:none}.about-grid{grid-template-columns:1fr}}
 
 /* EXPERTISE */
-.expertise{padding:36px 0}
+.expertise{padding:36px 0; margin-top: 40px;}
 .section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:18px}
 .section-head h3{margin:0;font-size:28px}
 .skill-grid{display:flex;gap:12px;flex-wrap:wrap}
@@ -107,8 +107,6 @@ footer{padding:26px 0;border-top:1px solid rgba(255,255,255,0.02);color:var(--mu
 
 /* Smooth scroll behavior for anchor clicks */
 html{scroll-behavior:smooth}
-
-/* ...existing code... */
 
 /* Mobile optimization */
 @media (max-width: 600px) {
@@ -189,14 +187,39 @@ html{scroll-behavior:smooth}
     text-align: center;
     font-size: 0.95rem;
   }
+}
 
-  /* Hide desktop nav, show mobile menu if you have one */
-  .nav .desktop-menu {
-    display: none;
+/* Remove navbar from mobile view but keep the brand "Anz." at original size */
+@media (max-width: 820px) {
+  .nav-links,
+  .nav-cta,
+  .nav-inner > nav,
+  .nav-inner > .nav-cta,
+  .hamburger,
+  .mobile-menu {
+    display: none !important;
   }
-  .nav .mobile-menu {
-    display: block;
+  .brand {
+    display: block !important;
+    font-size: 2.2rem; /* Restore original size */
+    margin: 16px 0 0 8px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 800;
+    letter-spacing: 1px;
+  }
+  header.nav {
+    display: flex !important;
+    align-items: flex-start;
+    background: transparent;
+    box-shadow: none;
+    position: static;
+    padding: 0;
+  }
+  .nav-inner {
+    display: flex !important;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 0;
   }
 }
 
-/* ...existing code... */
